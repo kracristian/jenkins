@@ -3,7 +3,11 @@ pipeline {
     parameters {
         string defaultValue: '', description: 'Nombre del usuario a crear', name: 'USUARIO', trim: true
         string defaultValue: '', description: 'contraseña nueva del usuario a crear', name: 'PASSWORD', trim: true
+<<<<<<< HEAD
         choice choices: ['Lectura','Admin','Desarrollador'], description: '', name: 'TIPOUSUARIO'
+=======
+        choice choices: ['Lectura','Admin','Desarrollador'], description: '', name: 'TIPOUSUARIO',
+>>>>>>> 6073b2e820d5e06b02688f4ac9b4a795e4ffef4d
         name: 'DATABASE', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', 
             value: 'database-2', visibleItemCount: 10
     }
