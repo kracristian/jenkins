@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage ('Creando Usuario') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'mysql', passwordVariable: 'PASSWD', usernameVariable: 'USER_DB')]) {
+                withCredentials([usernamePassword(credentialsId: 'mysql', passwordVariable: 'PASSWD_DB', usernameVariable: 'USER_DB')]) {
                         script {
                         def tipousuario="${TIPOUSUARIO}"
                         def browsers ="${DATABASE}".split(",")
@@ -24,13 +24,13 @@ pipeline {
                             if (tipousuario=="Admin"){
                                 PERMISO= PERMISO +","+ ADMINPERMISO
                             }
-                            if (tipousuario=="Desarrolladorr"){
+                            if (tipousuario=="Desarrollador"){
                                 PERMISO= PERMISO +","+ DESARROLLADOR
                             }
                             
                             for (int i = 0; i < browsers.size(); ++i) {
-                                sh ("mysql -u${USER_DB})('-p${PASSWD}') (-h ${browsers[i]}.${SUFIJOHOST}) (-e \"CREATE USER IF NOT EXISTS '$USUARIO'@'%' IDENTIFIED BY '$PASSWORD' ;\"")
-                                sh ("mysql -u${USER_DB})('-p${PASSWD}') (-h ${browsers[i]}.${SUFIJOHOST}) (-e \"GRANT $PERMISO ON *.* TO '$USUARIO'@'%';\"")
+                                sh  "mysql -u${USER_DB} -p${PASSWD_DB} -h ${browsers[i]}.${SUFIJOHOST} -e \"CREATE USER IF NOT EXISTS '$USUARIO'@'%' IDENTIFIED BY '$PASSWORD' ;\""
+                                sh  "mysql -u${USER_DB} -p${PASSWD_DB} -h ${browsers[i]}.${SUFIJOHOST} -e \"GRANT $PERMISO ON *.* TO '$USUARIO'@'%';\""
                             }
                         }
                     }
