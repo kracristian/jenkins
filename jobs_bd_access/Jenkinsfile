@@ -1,4 +1,4 @@
-ipeline {
+pipeline {
     agent any
     parameters {
         string defaultValue: '', description: 'Nombre del usuario a crear', name: 'USUARIO', trim: true
