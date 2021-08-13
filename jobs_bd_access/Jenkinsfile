@@ -29,8 +29,7 @@ pipeline {
                             }
                             
                             for (int i = 0; i < browsers.size(); ++i) {
-                                sh  "curl mysql -u${USER_DB} -p${PASSWD_DB} -h ${browsers[i]}.${SUFIJOHOST} -e \"CREATE USER IF NOT EXISTS '$USUARIO'@'%' IDENTIFIED BY '$PASSWORD' ;\""
-                                sh  "curl mysql -u${USER_DB} -p${PASSWD_DB} -h ${browsers[i]}.${SUFIJOHOST} -e \"GRANT $PERMISO ON *.* TO '$USUARIO'@'%';\""
+                                sh  "mysql -u${USER_DB} -p${PASSWD_DB} -h ${browsers[i]}.${SUFIJOHOST} -e \"GRANT $PERMISO ON *.* TO '$USUARIO'@'%';\""
                             }
                         }
                     }
